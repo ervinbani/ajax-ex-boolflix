@@ -1,18 +1,19 @@
 $(document).ready(function(){
 
 
-    $(document).on('click', '#btn', function(){
+    $(document).on('click', $('#btn'), function(){
         var inputUtente=$('.container').children('.input').val();
         $.ajax({
-            url:'https://api.themoviedb.org/search/movie',
+            url:'https://api.themoviedb.org/3/search/movie?',
             method:'GET',
             data:{
                 api_key:'936b60fb6691f67d5eda3a0a29507da1',
                 query:inputUtente,
-                language:'IT'
+                language:'it-IT'
             },
-            succes: function(data){
-                console.log(data);
+            success: function(data){
+                ris=data.results;
+                console.log(ris);
             },
             error:function(){
                 alert('errore');
