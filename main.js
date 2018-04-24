@@ -2,10 +2,6 @@ $(document).ready(function(){
     dataContainer=$('.container').children('.data-Container');
     $(document).on('click', $('#btn'), function(){
         searchMovies();
-
-
-
-
     });//fine del document.on
 
     function searchMovies(){
@@ -30,8 +26,6 @@ $(document).ready(function(){
               dataContainer.append('<p>'+'Lingua originale:-'+risultato[i]['original_language']+'</p>');
               dataContainer.append('<p>'+'Voto:='+risultato[i]['vote_average']+'<br>'+'<br>'+'</p>');
 
-
-
               }
 
           },
@@ -41,8 +35,5 @@ $(document).ready(function(){
       });//fine ajax
 
     }
-
-
-
 
 });//fine del doc ready
