@@ -28,7 +28,7 @@ $(document).ready(function(){
               dataContainer.append('<p>'+'Titolo:-'+risultato[i]['title']+'</p>');
               dataContainer.append('<p>'+'Titolo originale:-'+risultato[i]['original_title']+'</p>');
               dataContainer.append('<p>'+'Lingua originale:-'+risultato[i]['original_language']+'</p>');
-              dataContainer.append('<p>'+'Voto:-'+risultato[i]['vote_average']+'<br>'+'<br>'+'</p>');
+              dataContainer.append('<p>'+'Voto:='+risultato[i]['vote_average']+'<br>'+'<br>'+'</p>');
 
 
 
