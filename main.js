@@ -1,5 +1,5 @@
 $(document).ready(function(){
-    dataContainer=$('.container').children('.data-Container');
+    var dataContainer=$('.container').children('.data-Container');
     var inputUtente=$('.container').children('.input').val();
 
     $(document).on('click', $('#btn'), function(){
