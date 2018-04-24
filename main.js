@@ -1,11 +1,12 @@
 $(document).ready(function(){
     dataContainer=$('.container').children('.data-Container');
+    var inputUtente=$('.container').children('.input').val();
+
     $(document).on('click', $('#btn'), function(){
         searchMovies();
     });//fine del document.on
 
     function searchMovies(){
-      var inputUtente=$('.container').children('.input').val();
       var arr=[];
       $.ajax({
           url:'https://api.themoviedb.org/3/search/movie?',
