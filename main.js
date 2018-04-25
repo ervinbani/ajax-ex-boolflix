@@ -1,6 +1,6 @@
 var dataContainer=$('.container').children('.data-Container');
 var inputUtente=$('.container').children('.input').val();
-var arrFlags=['flags/it.PNG', 'flags/en.PNG', 'flags/es.PNG'];
+var arrFlags=['flags/it.svg', 'flags/en.svg', 'flags/es.svg'];
 
 
 
