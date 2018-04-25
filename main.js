@@ -36,7 +36,7 @@ $(document).ready(function(){
                   dataContainer.append('<p>'+'Voto:='+transformAverage(risultato[i]['vote_average'])+'<br><br>'+'</p>');
                   for(var j=0;j<arrFlags.length;j++){
                       if(arrFlags[j]==('flags/'+(risultato[i]['original_language'])+'.'+'svg')){
-                            var fonte='flags/'+arrFlags[j]+'.'+'svg';
+                            var fonte=arrFlags[j];
                             dataContainer.children('.leng').children('img').attr('src', fonte);
 
                       }
@@ -45,7 +45,7 @@ $(document).ready(function(){
                   }
               }
               //generateFlag();
-              console.log('risultato essatto', risultato);
+              console.log('risultato essatto', fonte);
             },
           error:function(){
               alert('errore');
