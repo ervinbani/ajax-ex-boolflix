@@ -25,7 +25,7 @@ $(document).ready(function(){
               dataContainer.append('<p>'+'Titolo:-'+risultato[i]['title']+'</p>');
               dataContainer.append('<p>'+'Titolo originale:-'+risultato[i]['original_title']+'</p>');
               dataContainer.append('<p>'+'Lingua originale:-'+risultato[i]['original_language']+'</p>');
-              dataContainer.append('<p>'+'Voto:='+risultato[i]['vote_average']+'<br>'+'<br>'+'</p>');
+              dataContainer.append('<p>'+'Voto:='+transformAverage(risultato[i]['vote_average'])+'<br>'+'<br>'+'</p>');
 
               }
 
@@ -35,6 +35,14 @@ $(document).ready(function(){
           }
       });//fine ajax
 
+    }
+    function transformAverage(vote_average){
+        starVote=Math.floor(vote_average/2);
+        var arrStar=[];
+        for(var i=0;i<starVote;i++){
+            arrStar.push('<i class="fas fa-star"></i>');
+        }
+        return arrStar;
     }
 
 });//fine del doc ready
