@@ -1,6 +1,6 @@
 var dataContainer=$('.container').children('.data-Container');
 var inputUtente=$('.container').children('.input').val();
-var arrFlags=['flags/it.svg', 'flags/en.svg', 'flags/es.svg'];
+var arrFlags=['flags/en.svg','flags/it.svg' , 'flags/es.svg'];
 
 
 
@@ -23,7 +23,7 @@ $(document).ready(function(){
           data:{
               api_key:'936b60fb6691f67d5eda3a0a29507da1',
               query:inputUtente,
-              language:'it-IT'
+              language:'it_IT'
           },
           success: function(data){
               var risultato=data.results;
@@ -32,20 +32,24 @@ $(document).ready(function(){
                   dataContainer.append('Risultato nr', (i+1));
                   dataContainer.append('<p>'+'Titolo:-'+risultato[i]['title']+'</p>');
                   dataContainer.append('<p>'+'Titolo originale:-'+risultato[i]['original_title']+'</p>');
-                  dataContainer.append('<p class="leng">'+'Lingua originale:-'+risultato[i]['original_language']+'<img id='+i+' src=fonte style="height:20px">'+'</p>');
+                  dataContainer.append('<p class="leng">'+'Lingua originale:-'+risultato[i]['original_language']+'<img id='+i+' src= style="height:20px">'+'</p>');
                   dataContainer.append('<p>'+'Voto:='+transformAverage(risultato[i]['vote_average'])+'<br><br>'+'</p>');
-                  for(var j=0;j<arrFlags.length;j++){
-                      if(arrFlags[j]==('flags/'+(risultato[i]['original_language'])+'.'+'svg')){
-                            var fonte=arrFlags[j];
-                            dataContainer.children('.leng').children('img').attr('src', fonte);
+                  //for(var j=0;j<arrFlags.length;j++){
+                      //if(arrFlags[j]==('flags/'+(risultato[i]['original_language'])+'.'+'svg')){
+                          //  var fonte=arrFlags[j];
+                            //dataContainer.children('.leng').children('img').attr('src', 'flags/'+(risultato[i]['original_language'])+'.'+'svg');
+                            //console.log('risultato essatto', fonte);
+                            //console.log('risultato fonte', arrFlags[j]);
 
-                      }
+                      //}
 
 
-                  }
+                  //}
               }
               //generateFlag();
-              console.log('risultato essatto', fonte);
+
+
+
             },
           error:function(){
               alert('errore');
@@ -54,6 +58,7 @@ $(document).ready(function(){
 
 
     }
+
     //funzione che transforma la media in un numero x da 1 a 5 e stampa x star invece del num x
     function transformAverage(vote_average){
         starVote=Math.floor(vote_average/2);
