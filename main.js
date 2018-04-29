@@ -1,54 +1,52 @@
 var dataContainer=$('.container').children('.data-Container');
 var inputUtente=$('.container').children('.input').val();
-var arrFlags=['flags/en.svg','flags/it.svg' , 'flags/es.svg'];
-
+var arrFlags=['en', 'it', 'es', 'de'];
 
 
 $(document).ready(function(){
 
 
-    var arr=0;
 
-
-    $(document).on('click', $('#btn'), function(){
+    $(document).on('click', '#btn', function(){
         searchMovies();
+        searchSeries();
 
 
     });//fine del document.on
 
     function searchMovies(){
+
       $.ajax({
           url:'https://api.themoviedb.org/3/search/movie?',
           method:'GET',
           data:{
               api_key:'936b60fb6691f67d5eda3a0a29507da1',
               query:inputUtente,
-              language:'it_IT'
+              language:'it_IT',
+
           },
           success: function(data){
               var risultato=data.results;
-              for(var i=0;i<risultato.length;i++){
-                  console.log('tittle', risultato[i]['original_title']);
-                  dataContainer.append('Risultato nr', (i+1));
-                  dataContainer.append('<p>'+'Titolo:-'+risultato[i]['title']+'</p>');
-                  dataContainer.append('<p>'+'Titolo originale:-'+risultato[i]['original_title']+'</p>');
-                  dataContainer.append('<p class="leng">'+'Lingua originale:-'+risultato[i]['original_language']+'<img id='+i+' src= style="height:20px">'+'</p>');
-                  dataContainer.append('<p>'+'Voto:='+transformAverage(risultato[i]['vote_average'])+'<br><br>'+'</p>');
-                  //for(var j=0;j<arrFlags.length;j++){
-                      //if(arrFlags[j]==('flags/'+(risultato[i]['original_language'])+'.'+'svg')){
-                          //  var fonte=arrFlags[j];
-                            //dataContainer.children('.leng').children('img').attr('src', 'flags/'+(risultato[i]['original_language'])+'.'+'svg');
-                            //console.log('risultato essatto', fonte);
-                            //console.log('risultato fonte', arrFlags[j]);
+                if(inputUtente==''){
+                  alert('inserisci il nome di un film');
 
-                      //}
+                }
+                else{
 
-
-                  //}
-              }
-              //generateFlag();
+                  for(var i=0;i<risultato.length;i++){
+                      var leng=risultato[i]['original_language'];
+                      console.log('tittle', risultato[i]['original_title']);
+                      dataContainer.append('Risultato nr', (i+1));
+                      dataContainer.append('<div>'+'Titolo:-'+risultato[i]['title']+'</div>');
+                      dataContainer.append('<div>'+'Titolo originale:-'+risultato[i]['original_title']+'</div>');
+                      dataContainer.append('<div class="leng">'+'Lingua originale:-'+leng+generateFlag(leng)+'</div>');
+                      dataContainer.append('<div>'+'Voto:'+transformAverage(risultato[i]['vote_average'])+'</div>');
+                      dataContainer.append('<div>'+'Type:'+'Film'+'<br><br>'+'</div>');
 
 
+                  }
+
+                }
 
             },
           error:function(){
@@ -56,17 +54,73 @@ $(document).ready(function(){
           }
       });//fine ajax
 
+    }
+    function searchSeries(){
+
+      $.ajax({
+          url:'https://api.themoviedb.org/3/search/tv?',
+          method:'GET',
+          data:{
+              api_key:'936b60fb6691f67d5eda3a0a29507da1',
+              query:inputUtente,
+              language:'it_IT',
+
+          },
+          success: function(data){
+              var seriesResult=data.results;
+              console.log('nome serie', seriesResult)
+                if(inputUtente==''){
+                  alert('inserisci il nome di un film');
+
+                }
+                else{
+
+                  for(var i=0;i<seriesResult.length;i++){
+                      var leng=seriesResult[i]['original_language'];
+                      console.log('tittle', seriesResult[i]['original_title']);
+                      dataContainer.append('Risultato nr', (i+1));
+                      dataContainer.append('<div>'+'Titolo:-'+seriesResult[i]['name']+'</div>');
+                      dataContainer.append('<div>'+'Titolo originale:-'+seriesResult[i]['original_name']+'</div>');
+                      dataContainer.append('<div class="leng">'+'Lingua originale:-'+leng+generateFlag(leng)+'</div>');
+                      dataContainer.append('<div>'+'Voto:'+transformAverage(seriesResult[i]['vote_average'])+'</div>');
+                      dataContainer.append('<div>'+'Type:'+'Serie Tv'+'<br><br>'+'</div>');
+
+
+
+                  }
+
+                }
+
+            },
+          error:function(){
+              alert('errore');
+          }
+      });//fine ajax
 
     }
-
     //funzione che transforma la media in un numero x da 1 a 5 e stampa x star invece del num x
     function transformAverage(vote_average){
-        starVote=Math.floor(vote_average/2);
+        var starVote=Math.floor(vote_average/2);
         var arrStar=[];
-        for(var i=0;i<starVote;i++){
-            arrStar.push('<i class="fas fa-star" style="color:yellow"></i>');
+        for(var i=0;i<5;i++){
+            if(i<starVote){
+                arrStar.push('<i class="fas fa-star" style="color:yellow"></i>');
+            }
+            else{
+              arrStar.push('<i class="star fas fa-star" ></i>');
+            }
+
+
         }
-        return arrStar;
+        return arrStar.join("");;
+    }
+
+    function generateFlag(leng){
+        var newElement='';
+        if(arrFlags.includes(leng)){
+            newElement+='<img src=flags/'+leng+'.svg width=20px>';
+        }
+        return newElement;
     }
 
 
