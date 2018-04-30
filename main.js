@@ -87,6 +87,7 @@ $(document).ready(function(){
                       dataContainer.append('<div>'+'Titolo originale:-'+seriesResult[i]['original_name']+'</div>');
                       dataContainer.append('<div class="leng">'+'Lingua originale:-'+leng+generateFlag(leng)+'</div>');
                       dataContainer.append('<div>'+'Voto:'+transformAverage(seriesResult[i]['vote_average'])+'</div>');
+                      dataContainer.append('<div>'+'Type:'+'SErie Tv'+'</div>');
                       dataContainer.append('<div>'+addPoster(poster)+'<br><br>'+'</div>');
 
 
@@ -133,7 +134,7 @@ $(document).ready(function(){
     }
     function addPoster(poster){
         var newElement='';
-        var urlCopy='https://image.tmdb.org/t/p/w185/'
+        var urlCopy='https://image.tmdb.org/t/p/w342/'
         if(poster!=''){
             newElement+='<img src='+urlCopy + poster + '>';
         }
