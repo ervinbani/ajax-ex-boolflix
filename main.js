@@ -7,10 +7,10 @@ $(document).ready(function(){
 
 
 
-    $(document).on('click', '#btn', function(){
+    $('#btn').click(function(){
+        initialState();
         searchMovies();
         searchSeries();
-
 
     });//fine del document.on
 
@@ -35,13 +35,16 @@ $(document).ready(function(){
 
                   for(var i=0;i<risultato.length;i++){
                       var leng=risultato[i]['original_language'];
+                      var poster=risultato[i]['poster_path'];
                       console.log('tittle', risultato[i]['original_title']);
                       dataContainer.append('Risultato nr', (i+1));
                       dataContainer.append('<div>'+'Titolo:-'+risultato[i]['title']+'</div>');
                       dataContainer.append('<div>'+'Titolo originale:-'+risultato[i]['original_title']+'</div>');
                       dataContainer.append('<div class="leng">'+'Lingua originale:-'+leng+generateFlag(leng)+'</div>');
                       dataContainer.append('<div>'+'Voto:'+transformAverage(risultato[i]['vote_average'])+'</div>');
-                      dataContainer.append('<div>'+'Type:'+'Film'+'<br><br>'+'</div>');
+                      dataContainer.append('<div>'+'Type:'+'Film'+'</div>');
+                      dataContainer.append('<div>'+addPoster(poster)+'<br><br>'+'</div>');
+
 
 
                   }
@@ -77,13 +80,14 @@ $(document).ready(function(){
 
                   for(var i=0;i<seriesResult.length;i++){
                       var leng=seriesResult[i]['original_language'];
-                      console.log('tittle', seriesResult[i]['original_title']);
+                      var poster=seriesResult[i]['poster_path'];
+                      console.log('tittle', seriesResult[i]['original_title'], seriesResult[i]['poster_path']);
                       dataContainer.append('Risultato nr', (i+1));
                       dataContainer.append('<div>'+'Titolo:-'+seriesResult[i]['name']+'</div>');
                       dataContainer.append('<div>'+'Titolo originale:-'+seriesResult[i]['original_name']+'</div>');
                       dataContainer.append('<div class="leng">'+'Lingua originale:-'+leng+generateFlag(leng)+'</div>');
                       dataContainer.append('<div>'+'Voto:'+transformAverage(seriesResult[i]['vote_average'])+'</div>');
-                      dataContainer.append('<div>'+'Type:'+'Serie Tv'+'<br><br>'+'</div>');
+                      dataContainer.append('<div>'+addPoster(poster)+'<br><br>'+'</div>');
 
 
 
@@ -121,6 +125,20 @@ $(document).ready(function(){
             newElement+='<img src=flags/'+leng+'.svg width=20px>';
         }
         return newElement;
+    }
+    function initialState(){
+        var dataCont = $('.dataContainer');
+        var inputUtente=$('.container').children('.input').val();
+        dataCont.children('div').remove();
+    }
+    function addPoster(poster){
+        var newElement='';
+        var urlCopy='https://image.tmdb.org/t/p/w185/'
+        if(poster!=''){
+            newElement+='<img src='+urlCopy + poster + '>';
+        }
+        return newElement;
+
     }
 
 
