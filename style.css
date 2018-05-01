@@ -2,14 +2,57 @@
   margin:0;
   padding:0;
 }
+
+.heder{
+  min-width:100vw;
+  height: 70px;
+  background: red;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: fixed;
+  top: 0;
+}
+.heder .logo{
+    font-size: 45px;
+    font-style: oblique ;
+}
+.heder .heder-right{
+
+}
+.heder .heder-right .input{
+  width: 400px;
+  height: 45px;
+  border:none;
+  border-radius: 5px;
+}
+.heder-right #btn{
+    width:90px;
+    height: 45px;
+    border:none;
+    border-radius: 5px;
+    background: white;
+    padding-left: -15px;
+
+}
 .container{
-  text-align: center;
+  min-width:100vw;
+  margin-top: 72px;
+  display: flex;
 }
 .container>img{
-  height:20px;
+  height:auto;
+}
+
+
+.info-Container{
+    min-width: 342px;
+    height: 450px;
+    margin-top: 72px;
+    margin-left: 20px;
 }
 
 .star{
   color: lightgrey;
-  
+
 }

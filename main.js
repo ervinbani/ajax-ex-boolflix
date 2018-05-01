@@ -1,5 +1,5 @@
-var dataContainer=$('.container').children('.data-Container');
-var inputUtente=$('.container').children('.input').val();
+var dataContainer=$('.container');
+var inputUtente=$('.heder').children('.heder-right').children('.input').val();
 var arrFlags=['en', 'it', 'es', 'de'];
 
 
@@ -37,13 +37,19 @@ $(document).ready(function(){
                       var leng=risultato[i]['original_language'];
                       var poster=risultato[i]['poster_path'];
                       console.log('tittle', risultato[i]['original_title']);
-                      dataContainer.append('Risultato nr', (i+1));
-                      dataContainer.append('<div>'+'Titolo:-'+risultato[i]['title']+'</div>');
-                      dataContainer.append('<div>'+'Titolo originale:-'+risultato[i]['original_title']+'</div>');
-                      dataContainer.append('<div class="leng">'+'Lingua originale:-'+leng+generateFlag(leng)+'</div>');
-                      dataContainer.append('<div>'+'Voto:'+transformAverage(risultato[i]['vote_average'])+'</div>');
-                      dataContainer.append('<div>'+'Type:'+'Film'+'</div>');
-                      dataContainer.append('<div>'+addPoster(poster)+'<br><br>'+'</div>');
+                      console.log('poster', addPoster(poster));
+                      dataContainer.append('<div class=info-Container style=background-image:url('+'https://image.tmdb.org/t/p/w342/'+poster+')>'
+                                          +'<ul>'
+                                          +'<li>'+'Titolo:-'+risultato[i]['title']+'</li>'
+                                          +'<li>'+'Titolo originale:-'+risultato[i]['original_title']+'</li>'
+                                          +'<li class="leng">'+'Lingua originale:-'+leng+generateFlag(leng)+'</li>'
+                                          +'<li>'+'Voto:'+transformAverage(risultato[i]['vote_average'])+'</li>'
+                                          +'<li>'+'Type:'+'Film'+'</li>'
+                      //dataContainer.append('<li>'+addPoster(poster)+'<br><br>'+'</li>');
+                                          +'</ul>'
+                                          +'</div>');
+
+                      //dataContainer.css('background-image', 'url='+addPoster(poster))
 
 
 
@@ -78,21 +84,24 @@ $(document).ready(function(){
                 }
                 else{
 
-                  for(var i=0;i<seriesResult.length;i++){
-                      var leng=seriesResult[i]['original_language'];
-                      var poster=seriesResult[i]['poster_path'];
-                      console.log('tittle', seriesResult[i]['original_title'], seriesResult[i]['poster_path']);
-                      dataContainer.append('Risultato nr', (i+1));
-                      dataContainer.append('<div>'+'Titolo:-'+seriesResult[i]['name']+'</div>');
-                      dataContainer.append('<div>'+'Titolo originale:-'+seriesResult[i]['original_name']+'</div>');
-                      dataContainer.append('<div class="leng">'+'Lingua originale:-'+leng+generateFlag(leng)+'</div>');
-                      dataContainer.append('<div>'+'Voto:'+transformAverage(seriesResult[i]['vote_average'])+'</div>');
-                      dataContainer.append('<div>'+'Type:'+'SErie Tv'+'</div>');
-                      dataContainer.append('<div>'+addPoster(poster)+'<br><br>'+'</div>');
+                    for(var i=0;i<seriesResult.length;i++){
+                        var leng=seriesResult[i]['original_language'];
+                        var poster=seriesResult[i]['poster_path'];
 
+                        console.log('tittle', seriesResult[i]['original_title'], seriesResult[i]['poster_path']);
 
+                        dataContainer.append('<div class=info-Container style=background-image:url('+'https://image.tmdb.org/t/p/w342/'+poster+')>'
+                                            +'<ul>'
+                                            +'<li>'+'Titolo:-'+seriesResult[i]['name']+'</li>'
+                                            +'<li>'+'Titolo originale:-'+seriesResult[i]['original_name']+'</li>'
+                                            +'<li class="leng">'+'Lingua originale:-'+leng+generateFlag(leng)+'</li>'
+                                            +'<li>'+'Voto:'+transformAverage(seriesResult[i]['vote_average'])+'</li>'
+                                            +'<li>'+'Type:'+'SErie Tv'+'</li>'
+                        //dataContainer.append('<li>'+addPoster(poster)+'<br><br>'+'</li>');
+                                            +'</ul>'
+                                            +'</div>');
 
-                  }
+                    }
 
                 }
 
