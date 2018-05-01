@@ -84,10 +84,10 @@ $(document).ready(function(){
           success: function(data){
               var seriesResult=data.results;
               console.log('nome serie', seriesResult)
-                if(inputUtente==''){
-                  alert('inserisci il titolo di un film');
+                  if(inputUtente==''){
+                      alert('inserisci il titolo di un film');
 
-                }
+                  }
                 else{
 
                     for(var i=0;i<seriesResult.length;i++){

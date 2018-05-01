@@ -4,14 +4,14 @@
 }
 
 .heder{
-  min-width:100vw;
-  height: 70px;
-  background: red;
-  display: flex;
-  justify-content: space-around;
-  align-items: center;
-  position: fixed;
-  top: 0;
+    min-width:100vw;
+    height: 70px;
+    background: red;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: fixed;
+    top: 0;
 }
 .heder .logo{
     font-size: 45px;
@@ -21,10 +21,10 @@
 
 }
 .heder .heder-right .input{
-  width: 400px;
-  height: 45px;
-  border:none;
-  border-radius: 5px;
+    width: 400px;
+    height: 45px;
+    border:none;
+    border-radius: 5px;
 }
 .heder-right #btn{
     width:90px;
@@ -36,12 +36,12 @@
 
 }
 .container{
-  min-width:100vw;
-  margin-top: 72px;
-  display: flex;
+    min-width:100vw;
+    margin-top: 72px;
+    display: flex;
 }
 .container>img{
-  height:auto;
+    height:auto;
 }
 
 
@@ -71,6 +71,6 @@
 }
 
 .star{
-  color: grey;
+    color: grey;
 
 }
