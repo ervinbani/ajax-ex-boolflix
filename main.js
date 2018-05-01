@@ -10,13 +10,15 @@ $(document).ready(function(){
 
 
     $(document).on('click', '#btn', function(){
-
+          initialState();
         searchMovies();//funzione che cerca e stampa film
         searchSeries();//funzione che cerca e stampa Serie Tv
 
 
     });
     showDetails();
+
+
 
     //funzione che cerca e stampa film
     function searchMovies(){
@@ -138,10 +140,9 @@ $(document).ready(function(){
     }
     //funzione che reseta il valore dell'input
     function initialState(inputUtente){
-        var resetInput=$('.heder').children('.heder-right').children('.input').val('');
+        //var resetInput=$('.heder').children('.heder-right').children('.input').val('');
         var newcontainer=$('.container').html('');
-        searchMovies();//funzione che cerca e stampa film
-        searchSeries();
+
 
     }
     //funzione che aggiunge un poster ad ogni film o serie che appare nella ricerca
