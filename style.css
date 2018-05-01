@@ -63,9 +63,12 @@
 }
 .bg-lightgrey{
     background: lightgrey;
+    min-width: 342px;
+    height: 450px;
+
 }
 
 .star{
-  color: lightgrey;
+  color: grey;
 
 }

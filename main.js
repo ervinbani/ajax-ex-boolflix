@@ -147,6 +147,7 @@ $(document).ready(function(){
       var infoContainer=dataContainer.children('.info-Container');
       $(document).on("click",".info-Container",function(){
       var thisfilm= $(this).find(".listadati ");
+
         thisfilm.addClass("bg-lightgrey");
         thisfilm.fadeIn(1000);
     });
