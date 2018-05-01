@@ -1,18 +1,17 @@
 var dataContainer=$('.container');
 var inputUtente=$('.heder').children('.heder-right').children('.input').val();
+var listInfo=dataContainer.children('ul');
 var arrFlags=['en', 'it', 'es', 'de'];
 
 
 $(document).ready(function(){
-
-
 
     $('#btn').click(function(){
         initialState();
         searchMovies();
         searchSeries();
 
-    });//fine del document.on
+    });
 
     function searchMovies(){
 
@@ -40,18 +39,13 @@ $(document).ready(function(){
                       console.log('poster', addPoster(poster));
                       dataContainer.append('<div class=info-Container style=background-image:url('+'https://image.tmdb.org/t/p/w342/'+poster+')>'
                                           +'<ul>'
-                                          +'<li>'+'Titolo:-'+risultato[i]['title']+'</li>'
-                                          +'<li>'+'Titolo originale:-'+risultato[i]['original_title']+'</li>'
-                                          +'<li class="leng">'+'Lingua originale:-'+leng+generateFlag(leng)+'</li>'
-                                          +'<li>'+'Voto:'+transformAverage(risultato[i]['vote_average'])+'</li>'
-                                          +'<li>'+'Type:'+'Film'+'</li>'
-                      //dataContainer.append('<li>'+addPoster(poster)+'<br><br>'+'</li>');
+                                          +'<li>'+'<strong>Titolo:</strong>'+risultato[i]['title']+'</li>'
+                                          +'<li>'+'<strong>Titolo originale:</strong>'+risultato[i]['original_title']+'</li>'
+                                          +'<li class="leng">'+'<strong>Lingua originale:</strong>'+leng+generateFlag(leng)+'</li>'
+                                          +'<li>'+'<strong>Voto:</strong>'+transformAverage(risultato[i]['vote_average'])+'</li>'
+                                          +'<li>'+'<strong>Type:'+'Film'+'</li>'
                                           +'</ul>'
                                           +'</div>');
-
-                      //dataContainer.css('background-image', 'url='+addPoster(poster))
-
-
 
                   }
 
@@ -79,7 +73,7 @@ $(document).ready(function(){
               var seriesResult=data.results;
               console.log('nome serie', seriesResult)
                 if(inputUtente==''){
-                  alert('inserisci il nome di un film');
+                  alert('inserisci il titolo di un film');
 
                 }
                 else{
@@ -87,17 +81,14 @@ $(document).ready(function(){
                     for(var i=0;i<seriesResult.length;i++){
                         var leng=seriesResult[i]['original_language'];
                         var poster=seriesResult[i]['poster_path'];
-
                         console.log('tittle', seriesResult[i]['original_title'], seriesResult[i]['poster_path']);
-
                         dataContainer.append('<div class=info-Container style=background-image:url('+'https://image.tmdb.org/t/p/w342/'+poster+')>'
                                             +'<ul>'
-                                            +'<li>'+'Titolo:-'+seriesResult[i]['name']+'</li>'
-                                            +'<li>'+'Titolo originale:-'+seriesResult[i]['original_name']+'</li>'
-                                            +'<li class="leng">'+'Lingua originale:-'+leng+generateFlag(leng)+'</li>'
-                                            +'<li>'+'Voto:'+transformAverage(seriesResult[i]['vote_average'])+'</li>'
-                                            +'<li>'+'Type:'+'SErie Tv'+'</li>'
-                        //dataContainer.append('<li>'+addPoster(poster)+'<br><br>'+'</li>');
+                                            +'<li>'+'<strong>Titolo:</strong>'+seriesResult[i]['name']+'</li>'
+                                            +'<li>'+'<strong>Titolo originale:</strong>'+seriesResult[i]['original_name']+'</li>'
+                                            +'<li class="leng">'+'<strong>Lingua originale:</strong>'+leng+generateFlag(leng)+'</li>'
+                                            +'<li>'+'<strong>Voto:</strong>'+transformAverage(seriesResult[i]['vote_average'])+'</li>'
+                                            +'<li>'+'<strong>Type:</strong>'+'Serie Tv'+'</li>'
                                             +'</ul>'
                                             +'</div>');
 
@@ -121,7 +112,7 @@ $(document).ready(function(){
                 arrStar.push('<i class="fas fa-star" style="color:yellow"></i>');
             }
             else{
-              arrStar.push('<i class="star fas fa-star" ></i>');
+                arrStar.push('<i class="star fas fa-star" ></i>');
             }
 
 
@@ -148,7 +139,6 @@ $(document).ready(function(){
             newElement+='<img src='+urlCopy + poster + '>';
         }
         return newElement;
-
     }
 
 
