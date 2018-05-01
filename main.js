@@ -9,15 +9,14 @@ var arrFlags=['en', 'it', 'es', 'de'];
 $(document).ready(function(){
 
     $('#btn').click(function(){
-        searchMovies();
-        searchSeries();
+        searchMovies();//funzione che cerca e stampa film
+        searchSeries();//funzione che cerca e stampa Serie Tv
 
     });
     showDetails();
 
+    //funzione che cerca e stampa film
     function searchMovies(){
-
-
       $.ajax({
           url:'https://api.themoviedb.org/3/search/movie?',
           method:'GET',
@@ -61,6 +60,7 @@ $(document).ready(function(){
       });//fine ajax
 
     }
+    //funzione che cerca e stampa serie Tv
     function searchSeries(){
       $.ajax({
           url:'https://api.themoviedb.org/3/search/tv?',
@@ -117,12 +117,10 @@ $(document).ready(function(){
             else{
                 arrStar.push('<i class="star fas fa-star" ></i>');
             }
-
-
         }
         return arrStar.join("");;
     }
-
+    //funzione che prende in ingresso le iniziali della lingua originale e stampa la bandiera corrispondente
     function generateFlag(leng){
         var newElement='';
         if(arrFlags.includes(leng)){
@@ -130,11 +128,13 @@ $(document).ready(function(){
         }
         return newElement;
     }
+    //funzione che reseta il valore dell'input
     function initialState(inputUtente){
         var resetInput=$('.heder').children('.heder-right').children('.input').val('');
 
         return resetInput;
     }
+    //funzione che aggiunge un poster ad ogni film o serie che appare nella ricerca
     function addPoster(poster){
         var newElement='';
         var urlCopy='https://image.tmdb.org/t/p/w342/'
@@ -143,17 +143,17 @@ $(document).ready(function(){
         }
         return newElement;
     }
+    //al click su ogni poster di un film, appare la schermata con i dati e nasconde il poster
     function showDetails(){
-      var infoContainer=dataContainer.children('.info-Container');
-      $(document).on("click",".info-Container",function(){
-      var thisfilm= $(this).find(".listadati ");
-
-        thisfilm.addClass("bg-lightgrey");
-        thisfilm.fadeIn(1000);
+        var infoContainer=dataContainer.children('.info-Container');
+        $(document).on("click",".info-Container",function(){
+              var thisfilm= $(this).find(".listadati ");
+              thisfilm.addClass("bg-lightgrey");
+              thisfilm.fadeIn(1000);
     });
     // On mouseleave scompare il testo contenente le info del film
     $(document).on("mouseleave",".info-Container",function(){
-      var thisfilm= $(this).find(".listadati");
+        var thisfilm= $(this).find(".listadati");
         thisfilm.fadeOut(1500);
     });
 
