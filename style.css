@@ -63,8 +63,10 @@
 }
 .bg-lightgrey{
     background: lightgrey;
-    min-width: 342px;
-    height: 450px;
+    width: 90%;
+    height: 90%;
+    margin-top:0px;
+    margin-bottom: 5px;
 
 }
 

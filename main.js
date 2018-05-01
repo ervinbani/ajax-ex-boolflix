@@ -1,5 +1,4 @@
 var dataContainer=$('.container');
-var inputUtente=$('.heder').children('.heder-right').children('.input').val();
 var infoContainer=dataContainer.children('.info-Container');
 var listInfo=dataContainer.children('ul');
 
@@ -8,15 +7,21 @@ var arrFlags=['en', 'it', 'es', 'de'];
 
 $(document).ready(function(){
 
-    $('#btn').click(function(){
+
+
+    $(document).on('click', '#btn', function(){
+
         searchMovies();//funzione che cerca e stampa film
         searchSeries();//funzione che cerca e stampa Serie Tv
+
 
     });
     showDetails();
 
     //funzione che cerca e stampa film
     function searchMovies(){
+      var inputUtente=$('.heder').children('.heder-right').children('.input').val();
+
       $.ajax({
           url:'https://api.themoviedb.org/3/search/movie?',
           method:'GET',
@@ -62,6 +67,9 @@ $(document).ready(function(){
     }
     //funzione che cerca e stampa serie Tv
     function searchSeries(){
+
+      var inputUtente=$('.heder').children('.heder-right').children('.input').val();
+
       $.ajax({
           url:'https://api.themoviedb.org/3/search/tv?',
           method:'GET',
@@ -131,8 +139,10 @@ $(document).ready(function(){
     //funzione che reseta il valore dell'input
     function initialState(inputUtente){
         var resetInput=$('.heder').children('.heder-right').children('.input').val('');
+        var newcontainer=$('.container').html('');
+        searchMovies();//funzione che cerca e stampa film
+        searchSeries();
 
-        return resetInput;
     }
     //funzione che aggiunge un poster ad ogni film o serie che appare nella ricerca
     function addPoster(poster){
