@@ -1,19 +1,22 @@
 var dataContainer=$('.container');
 var inputUtente=$('.heder').children('.heder-right').children('.input').val();
+var infoContainer=dataContainer.children('.info-Container');
 var listInfo=dataContainer.children('ul');
+
 var arrFlags=['en', 'it', 'es', 'de'];
 
 
 $(document).ready(function(){
 
     $('#btn').click(function(){
-        initialState();
         searchMovies();
         searchSeries();
 
     });
+    showDetails();
 
     function searchMovies(){
+
 
       $.ajax({
           url:'https://api.themoviedb.org/3/search/movie?',
@@ -38,7 +41,7 @@ $(document).ready(function(){
                       console.log('tittle', risultato[i]['original_title']);
                       console.log('poster', addPoster(poster));
                       dataContainer.append('<div class=info-Container style=background-image:url('+'https://image.tmdb.org/t/p/w342/'+poster+')>'
-                                          +'<ul>'
+                                          +'<ul class=listadati>'
                                           +'<li>'+'<strong>Titolo:</strong>'+risultato[i]['title']+'</li>'
                                           +'<li>'+'<strong>Titolo originale:</strong>'+risultato[i]['original_title']+'</li>'
                                           +'<li class="leng">'+'<strong>Lingua originale:</strong>'+leng+generateFlag(leng)+'</li>'
@@ -59,7 +62,6 @@ $(document).ready(function(){
 
     }
     function searchSeries(){
-
       $.ajax({
           url:'https://api.themoviedb.org/3/search/tv?',
           method:'GET',
@@ -83,7 +85,7 @@ $(document).ready(function(){
                         var poster=seriesResult[i]['poster_path'];
                         console.log('tittle', seriesResult[i]['original_title'], seriesResult[i]['poster_path']);
                         dataContainer.append('<div class=info-Container style=background-image:url('+'https://image.tmdb.org/t/p/w342/'+poster+')>'
-                                            +'<ul>'
+                                            +'<ul class=listadati>'
                                             +'<li>'+'<strong>Titolo:</strong>'+seriesResult[i]['name']+'</li>'
                                             +'<li>'+'<strong>Titolo originale:</strong>'+seriesResult[i]['original_name']+'</li>'
                                             +'<li class="leng">'+'<strong>Lingua originale:</strong>'+leng+generateFlag(leng)+'</li>'
@@ -101,6 +103,7 @@ $(document).ready(function(){
               alert('errore');
           }
       });//fine ajax
+
 
     }
     //funzione che transforma la media in un numero x da 1 a 5 e stampa x star invece del num x
@@ -127,10 +130,10 @@ $(document).ready(function(){
         }
         return newElement;
     }
-    function initialState(){
-        var dataCont = $('.dataContainer');
-        var inputUtente=$('.container').children('.input').val();
-        dataCont.children('div').remove();
+    function initialState(inputUtente){
+        var resetInput=$('.heder').children('.heder-right').children('.input').val('');
+
+        return resetInput;
     }
     function addPoster(poster){
         var newElement='';
@@ -139,6 +142,21 @@ $(document).ready(function(){
             newElement+='<img src='+urlCopy + poster + '>';
         }
         return newElement;
+    }
+    function showDetails(){
+      var infoContainer=dataContainer.children('.info-Container');
+      $(document).on("click",".info-Container",function(){
+      var thisfilm= $(this).find(".listadati ");
+        thisfilm.addClass("bg-lightgrey");
+        thisfilm.fadeIn(1000);
+    });
+    // On mouseleave scompare il testo contenente le info del film
+    $(document).on("mouseleave",".info-Container",function(){
+      var thisfilm= $(this).find(".listadati");
+        thisfilm.fadeOut(1500);
+    });
+
+
     }
 
 

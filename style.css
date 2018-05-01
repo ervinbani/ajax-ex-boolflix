@@ -50,12 +50,19 @@
     height: 450px;
     margin-top: 72px;
     margin-left: 20px;
+    border: 5px solid red;
+}
+.info-Container:hover{
+    cursor: pointer;
 }
 .info-Container ul{
     list-style-type: none;
     margin: 10px 10px ;
     padding: 0;
     display: none;
+}
+.bg-lightgrey{
+    background: lightgrey;
 }
 
 .star{
