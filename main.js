@@ -19,7 +19,6 @@ $(document).ready(function(){
     showDetails();
 
 
-
     //funzione che cerca e stampa film
     function searchMovies(){
       var inputUtente=$('.heder').children('.heder-right').children('.input').val();
@@ -169,6 +168,5 @@ $(document).ready(function(){
 
 
     }
-
 
 });//fine del doc ready
